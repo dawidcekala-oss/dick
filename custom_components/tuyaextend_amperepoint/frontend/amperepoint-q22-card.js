@@ -892,6 +892,7 @@ class AmperePointQ22Card extends HTMLElement {
       this._style.textContent = `
         amperepoint-q22-card {
           display: block;
+          container-type: inline-size;
         }
         .app {
           --ap-bg: #101214;
@@ -1340,6 +1341,48 @@ class AmperePointQ22Card extends HTMLElement {
           }
           .gauge {
             margin: 0 auto;
+          }
+          .status-row {
+            grid-template-columns: 36px minmax(0, 1fr);
+          }
+          .status-row strong {
+            grid-column: 2;
+            text-align: left;
+          }
+        }
+        /* Dashboard columns are much narrower than the viewport, so the
+           media queries above never fire there; react to the card's own
+           width as well. */
+        @container (max-width: 1100px) {
+          .dashboard, .content-grid, .power-card {
+            grid-template-columns: 1fr;
+          }
+          .metrics-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+        }
+        @container (max-width: 680px) {
+          .app {
+            padding: 14px;
+          }
+          h1 {
+            font-size: clamp(24px, 7cqw, 34px);
+          }
+          .hero {
+            grid-template-columns: 1fr;
+          }
+          .hero-status {
+            align-items: flex-start;
+          }
+          .metrics-grid {
+            grid-template-columns: 1fr;
+          }
+          .gauge {
+            margin: 0 auto;
+            width: min(260px, 100%);
+          }
+          .card-title {
+            flex-wrap: wrap;
           }
           .status-row {
             grid-template-columns: 36px minmax(0, 1fr);
