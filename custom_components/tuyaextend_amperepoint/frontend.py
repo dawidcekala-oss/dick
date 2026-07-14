@@ -61,7 +61,14 @@ async def _async_ensure_lovelace_resource(hass: HomeAssistant) -> None:
         return
 
     await resource_collection.async_get_info()
-    if any(_same_resource(item) for item in resource_collection.async_items()):
+    for item in resource_collection.async_items():
+        if not _same_resource(item):
+            continue
+        # Refresh the version query so browsers reload the card after updates.
+        if item.get("url") != FRONTEND_MODULE:
+            await resource_collection.async_update_item(
+                item["id"], {"url": FRONTEND_MODULE}
+            )
         hass.data[_RESOURCE_REGISTERED] = True
         return
 

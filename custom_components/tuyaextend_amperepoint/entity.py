@@ -37,6 +37,11 @@ class AmperePointEntity(CoordinatorEntity[AmperePointCoordinator]):
         )
 
     @property
+    def extra_state_attributes(self) -> dict[str, str]:
+        # Language-independent marker used by the bundled card to detect entities.
+        return {"amperepoint_key": self.entity_description.key}
+
+    @property
     def _data_value(self):
         if not self.entity_description.value_key:
             return None

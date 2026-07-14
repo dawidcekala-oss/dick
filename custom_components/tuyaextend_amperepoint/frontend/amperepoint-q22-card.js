@@ -356,31 +356,31 @@ class AmperePointQ22Card extends HTMLElement {
 
   detectEntities() {
     const specs = {
-      switch: { domains: ["switch"], any: [" charging", "_charging", " ladowanie", "_switch", " start stop"], not: [] },
-      currentLimit: { domains: ["number", "input_number"], any: ["current limit", "current_limit", "charging current", "charging_current", "charge cur set", "charge_cur_set", "limit pradu"], not: ["current_l1", "current_l2", "current_l3"] },
-      status: { domains: ["sensor"], any: [" status", "_status", "work state", "work_state", "status czytelny"], not: ["connection", "cp"] },
-      cp: { domains: ["binary_sensor", "sensor"], any: ["vehicle connected", "vehicle_connected", "connection state", "connection_state", "controlpi", "control pilot", " cp", "_cp"], not: [] },
-      faults: { domains: ["sensor", "binary_sensor"], any: [" error", "_error", " fault", "_fault", " bled", "_bled"], not: [] },
-      power: { domains: ["sensor"], any: [" power", "_power", "total power", "total_power", "moc chwilowa", "moc teraz"], not: ["power_l1", "power_l2", "power_l3", "moc_l1", "moc_l2", "moc_l3", "phase", "faza"] },
-      sessionEnergy: { domains: ["sensor"], any: ["session energy", "session_energy", "energia biezacej sesji", "energia_biezacej_sesji"], not: ["last", "ostatniej", "charge_energy_once"] },
+      switch: { key: "charging", domains: ["switch"], any: [" charging", "_charging", " ladowanie", "_switch", " start stop"], not: [] },
+      currentLimit: { key: "current_limit", domains: ["number", "input_number"], any: ["current limit", "current_limit", "charging current", "charging_current", "charge cur set", "charge_cur_set", "limit pradu"], not: ["current_l1", "current_l2", "current_l3"] },
+      status: { key: "status", domains: ["sensor"], any: [" status", "_status", "work state", "work_state", "status czytelny"], not: ["connection", "cp"] },
+      cp: { key: "vehicle_connected", domains: ["binary_sensor", "sensor"], any: ["vehicle connected", "vehicle_connected", "auto podlaczone", "podlaczenie auta", "connection state", "connection_state", "controlpi", "control pilot", " cp", "_cp"], not: [] },
+      faults: { key: "error", domains: ["sensor", "binary_sensor"], any: [" error", "_error", " fault", "_fault", " bled", "_bled", " blad", "_blad"], not: [] },
+      power: { key: "power", domains: ["sensor"], any: [" power", "_power", "total power", "total_power", " moc", "moc chwilowa", "moc teraz"], not: ["power_l1", "power_l2", "power_l3", "moc_l1", "moc_l2", "moc_l3", "phase", "faza"] },
+      sessionEnergy: { key: "session_energy", domains: ["sensor"], any: ["session energy", "session_energy", "energia sesji", "energia biezacej sesji", "energia_biezacej_sesji"], not: ["last", "ostatniej", "charge_energy_once"] },
       sessionDuration: { domains: ["sensor"], any: ["session duration", "session_duration", "czas biezacej sesji", "czas_biezacej_sesji"], not: [] },
-      totalEnergy: { domains: ["sensor"], any: ["total energy", "total_energy", "forward energy total", "forward_energy_total", "energia calkowita"], not: [] },
+      totalEnergy: { key: "total_energy", domains: ["sensor"], any: ["total energy", "total_energy", "forward energy total", "forward_energy_total", "energia calkowita"], not: [] },
       dailyEnergy: { domains: ["sensor"], any: ["daily energy", "daily_energy", "daily total energy", "daily_total_energy", "energia dzienna"], not: [] },
       lastSessionDelta: { domains: ["sensor"], any: ["last session delta", "ostatniej sesji delta", "energia_ostatniej_sesji_delta"], not: [] },
-      lastSessionDp25: { domains: ["sensor"], any: ["last session energy", "last_session_energy", "charge energy once", "charge_energy_once", "charge_energy_single", "ostatnia sesja"], not: [] },
-      temperature: { domains: ["sensor"], any: ["temperature", "temperatura", "temp current", "temp_current"], not: [] },
-      phaseCount: { domains: ["sensor"], any: ["phase count", "phase_count", "liczba faz"], not: [] },
+      lastSessionDp25: { key: "last_session_energy", domains: ["sensor"], any: ["last session energy", "last_session_energy", "energia ostatniej sesji", "charge energy once", "charge_energy_once", "charge_energy_single", "ostatnia sesja"], not: [] },
+      temperature: { key: "temperature", domains: ["sensor"], any: ["temperature", "temperatura", "temp current", "temp_current"], not: [] },
+      phaseCount: { key: "phase_count", domains: ["sensor"], any: ["phase count", "phase_count", "liczba faz"], not: [] },
       sessionStart: { domains: ["input_datetime"], any: ["session start", "session_started", "start sesji"], not: [] },
       rawDp: { domains: ["sensor"], any: ["raw dp", "raw_dp", "datapoint", "datapoints"], not: [] },
-      l1Voltage: { domains: ["sensor"], any: ["voltage_l1", "voltage l1", "napiecie_l1", "phase a voltage", "faza a napiecie"], not: [] },
-      l1Current: { domains: ["sensor"], any: ["current_l1", "current l1", "prad_l1", "phase a current", "faza a prad"], not: [] },
-      l1Power: { domains: ["sensor"], any: ["power_l1", "power l1", "moc_l1", "phase a power", "faza a moc"], not: [] },
-      l2Voltage: { domains: ["sensor"], any: ["voltage_l2", "voltage l2", "napiecie_l2", "phase b voltage", "faza b napiecie"], not: [] },
-      l2Current: { domains: ["sensor"], any: ["current_l2", "current l2", "prad_l2", "phase b current", "faza b prad"], not: [] },
-      l2Power: { domains: ["sensor"], any: ["power_l2", "power l2", "moc_l2", "phase b power", "faza b moc"], not: [] },
-      l3Voltage: { domains: ["sensor"], any: ["voltage_l3", "voltage l3", "napiecie_l3", "phase c voltage", "faza c napiecie"], not: [] },
-      l3Current: { domains: ["sensor"], any: ["current_l3", "current l3", "prad_l3", "phase c current", "faza c prad"], not: [] },
-      l3Power: { domains: ["sensor"], any: ["power_l3", "power l3", "moc_l3", "phase c power", "faza c moc"], not: [] },
+      l1Voltage: { key: "voltage_l1", domains: ["sensor"], any: ["voltage_l1", "voltage l1", "napiecie_l1", "phase a voltage", "faza a napiecie"], not: [] },
+      l1Current: { key: "current_l1", domains: ["sensor"], any: ["current_l1", "current l1", "prad_l1", "phase a current", "faza a prad"], not: [] },
+      l1Power: { key: "power_l1", domains: ["sensor"], any: ["power_l1", "power l1", "moc_l1", "phase a power", "faza a moc"], not: [] },
+      l2Voltage: { key: "voltage_l2", domains: ["sensor"], any: ["voltage_l2", "voltage l2", "napiecie_l2", "phase b voltage", "faza b napiecie"], not: [] },
+      l2Current: { key: "current_l2", domains: ["sensor"], any: ["current_l2", "current l2", "prad_l2", "phase b current", "faza b prad"], not: [] },
+      l2Power: { key: "power_l2", domains: ["sensor"], any: ["power_l2", "power l2", "moc_l2", "phase b power", "faza b moc"], not: [] },
+      l3Voltage: { key: "voltage_l3", domains: ["sensor"], any: ["voltage_l3", "voltage l3", "napiecie_l3", "phase c voltage", "faza c napiecie"], not: [] },
+      l3Current: { key: "current_l3", domains: ["sensor"], any: ["current_l3", "current l3", "prad_l3", "phase c current", "faza c prad"], not: [] },
+      l3Power: { key: "power_l3", domains: ["sensor"], any: ["power_l3", "power l3", "moc_l3", "phase c power", "faza c moc"], not: [] },
     };
     const detected = {};
     for (const [key, spec] of Object.entries(specs)) {
@@ -398,6 +398,16 @@ class AmperePointQ22Card extends HTMLElement {
   findEntity(spec) {
     const prefix = this.normalizeSearch(this.config?.entityPrefix || "");
     const all = Object.keys(this._hass?.states || {}).sort();
+    if (spec.key) {
+      // Entities created by the integration carry a language-independent
+      // amperepoint_key attribute; prefer them over keyword matching.
+      for (const entityId of all) {
+        const attrs = this._hass?.states?.[entityId]?.attributes;
+        if (attrs?.amperepoint_key !== spec.key) continue;
+        if (prefix && !this.entitySearchText(entityId).includes(prefix)) continue;
+        return entityId;
+      }
+    }
     const relevant = all.filter((entityId) => this.isRelevantEntity(entityId, prefix));
     const pools = relevant.length ? [relevant, all] : [all];
     for (const pool of pools) {
