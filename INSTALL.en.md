@@ -84,12 +84,22 @@ AmperePoint Q Series
 
 Then reload the Tuya integration or restart Home Assistant and try again.
 
-## 4. Add The Lovelace Card
+## 4. The Dashboard And The Lovelace Card
 
 In standard Home Assistant storage-mode dashboards, the integration registers
-the bundled card automatically.
+the bundled card automatically and creates an `AmperePoint` dashboard in the
+sidebar with the card already on it. No YAML configuration is needed.
 
-Add a manual card with:
+The generated dashboard appears at:
+
+```text
+/amperepoint-ev
+```
+
+You can edit or remove the generated view like any other storage-mode
+dashboard; your changes are kept across restarts.
+
+To place the card on your own dashboard instead, add a manual card with:
 
 ```yaml
 type: custom:amperepoint-q22-card

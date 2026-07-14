@@ -86,12 +86,22 @@ AmperePoint Q Series
 Następnie przeładuj integrację Tuya albo zrestartuj Home Assistant i spróbuj
 ponownie.
 
-## 4. Dodaj kartę Lovelace
+## 4. Dashboard i karta Lovelace
 
 W standardowych dashboardach Home Assistant działających w trybie storage
-integracja rejestruje kartę automatycznie.
+integracja rejestruje kartę automatycznie i tworzy na pasku bocznym dashboard
+`AmperePoint` z gotową kartą. Konfiguracja YAML nie jest potrzebna.
 
-Dodaj kartę ręcznie:
+Wygenerowany dashboard jest dostępny pod adresem:
+
+```text
+/amperepoint-ev
+```
+
+Wygenerowany widok możesz edytować lub usunąć jak każdy inny dashboard w trybie
+storage; zmiany są zachowywane po restarcie.
+
+Jeśli wolisz umieścić kartę na własnym dashboardzie, dodaj kartę ręcznie:
 
 ```yaml
 type: custom:amperepoint-q22-card

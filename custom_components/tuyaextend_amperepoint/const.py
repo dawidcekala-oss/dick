@@ -6,7 +6,7 @@ from homeassistant.const import Platform
 
 DOMAIN = "tuyaextend_amperepoint"
 NAME = "TuyaExtend AmperePoint"
-VERSION = "0.1.0"
+VERSION = "0.2.0"
 
 PLATFORMS = [
     Platform.SENSOR,
@@ -93,3 +93,8 @@ PHASE_RAW_KEYS = (
 
 FRONTEND_URL = "/tuyaextend_amperepoint/frontend"
 FRONTEND_MODULE = f"{FRONTEND_URL}/amperepoint-q22-card.js"
+
+DASHBOARD_URL_PATH = "amperepoint-ev"
+DASHBOARD_STORAGE_ID = DOMAIN
+DASHBOARD_TITLE = "AmperePoint"
+DASHBOARD_ICON = "mdi:ev-station"

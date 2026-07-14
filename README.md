@@ -19,7 +19,10 @@ Home Assistant / HACS workspace for AmperePoint EV chargers using Tuya.
 2. Configure the official Home Assistant Tuya integration first.
 3. Install this repository through HACS as a custom integration.
 4. Add `TuyaExtend AmperePoint` from Home Assistant integrations.
-5. Add the Lovelace card:
+5. Open the automatically created `AmperePoint` dashboard in the sidebar
+   (`/amperepoint-ev`).
+
+To place the card on your own dashboard instead, add:
 
 ```yaml
 type: custom:amperepoint-q22-card
@@ -66,7 +69,8 @@ does not replace the official Tuya integration. The expected flow is:
 2. Install this repository as a HACS custom integration.
 3. Add `TuyaExtend AmperePoint` from Home Assistant integrations.
 4. Select a detected AmperePoint charger.
-5. Add the bundled Lovelace card:
+5. Open the automatically created `AmperePoint` dashboard, or add the bundled
+   Lovelace card to any dashboard:
 
 ```yaml
 type: custom:amperepoint-q22-card
